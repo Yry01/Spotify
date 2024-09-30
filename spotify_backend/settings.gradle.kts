@@ -1,1 +1,1 @@
-rootProject.name = "com.laioffer.spotify_backend"
+rootProject.name = "spotify_backend"
