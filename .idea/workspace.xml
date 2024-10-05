@@ -16,31 +16,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="317ba87c-b91a-4103-aa85-eb216430d9f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/drawable/ic_favorite_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/drawable/ic_home_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/drawable/ic_pause_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/drawable/ic_play_arrow_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/drawable/ic_unfavorite_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/drawable/vinyl_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/xml/network_security_config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/java/com/laioffer/spotify/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/java/com/laioffer/spotify/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/java/com/laioffer/spotify/ui/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/java/com/laioffer/spotify/ui/theme/Color.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spotifyfrontent/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/Spotifyfrontent/gradlew" afterDir="false" />
-    </list>
+    <list default="true" id="317ba87c-b91a-4103-aa85-eb216430d9f9" name="Changes" comment="add frontend files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\yueru\.android\avd\Medium_Phone_API_35.avd)]" />
   <component name="ExternalProjectsData">
@@ -92,32 +75,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yueru/OneDrive/Spotify/Spotifyfrontent&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.XML&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "PROJECT_TRUSTED_KEY": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "frontend",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/yueru/OneDrive/Spotify",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.sourceCode.XML",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/xml" />
@@ -284,6 +269,15 @@
       <workItem from="1727558402325" duration="512000" />
       <workItem from="1727558927680" duration="572000" />
     </task>
+    <task id="LOCAL-00001" summary="add frontend files">
+      <option name="closed" value="true" />
+      <created>1728147306750</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728147306750</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,5 +293,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add frontend files" />
+    <option name="LAST_COMMIT_MESSAGE" value="add frontend files" />
   </component>
 </project>
