@@ -24,6 +24,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import coil.compose.AsyncImage
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.laioffer.spotify.database.DatabaseDao
+import com.laioffer.spotify.datamodel.Album
 import com.laioffer.spotify.di.Car
 import com.laioffer.spotify.network.NetworkApi
 import com.laioffer.spotify.ui.theme.SpotifyTheme
@@ -31,6 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 // customized extend AppCompatActivity
@@ -45,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var api: NetworkApi
+
+    @Inject
+    lateinit var databaseDao: DatabaseDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,13 +91,7 @@ class MainActivity : AppCompatActivity() {
         // connect navView with navController
         NavigationUI.setupWithNavController(navView, navController)
 
-//        // https://stackoverflow.com/questions/70703505/navigationui-not-working-correctly-with-bottom-navigation-view-implementation
-//        // try to fix the issue of NavigationUI not working correctly with BottomNavigationView implementation
-//        navView.setOnItemSelectedListener{
-//            NavigationUI.onNavDestinationSelected(it, navController)
-//            navController.popBackStack(it.itemId, inclusive = false)
-//            true
-//        }
+
         /**
          * GitHubService service = retrofit.create(GitHubService.class);
          */
@@ -101,6 +101,20 @@ class MainActivity : AppCompatActivity() {
 //            val api = retrofit.create(NetworkApi::class.java)
             val response = api.getHomeFeed().execute().body()
             Log.d("Network", response.toString())
+        }
+
+        GlobalScope.launch {
+            withContext(Dispatchers.IO) {
+                val album = Album(
+                    id = 1,
+                    name = "Hexagonal",
+                    year = "2008",
+                    cover = "https://upload.wikimedia.org/wikipedia/en/6/6d/Leessang-Hexagonal_%28cover%29.jpg",
+                    artists = "Lesssang",
+                    description = "Leessang (Korean: 리쌍) was a South Korean hip hop duo, composed of Kang Hee-gun (Gary or Garie) and Gil Seong-joon (Gil)"
+                )
+                databaseDao.favoriteAlbum(album)
+            }
         }
     }
 
