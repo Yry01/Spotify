@@ -25,7 +25,7 @@ class PlaylistViewModel @Inject constructor(
     val uiState: StateFlow<PlaylistUiState> = _uiState.asStateFlow()
 
     fun fetchPlaylist(album: Album) {
-        // _uiState.value = _uiState.value.copy(album = album)
+        _uiState.value = _uiState.value.copy(album = album)
 
         viewModelScope.launch {
             val playlist = playlistRepository.getPlaylist(album.id)
