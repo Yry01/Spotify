@@ -1,9 +1,24 @@
 package com.laioffer.spotify.ui.playlist
 
 import android.util.Log
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -14,10 +29,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -30,6 +49,7 @@ import com.laioffer.spotify.datamodel.Song
 import com.laioffer.spotify.player.PlayerUiState
 import com.laioffer.spotify.player.PlayerViewModel
 
+
 @Composable
 fun PlaylistScreen(
     playlistViewModel: PlaylistViewModel,
@@ -37,21 +57,19 @@ fun PlaylistScreen(
 ) {
     val playlistUiState by playlistViewModel.uiState.collectAsState()
     val playerUiState by playerViewModel.uiState.collectAsState()
-
-
-    PlaylistScreenContent(
-        playlistUiState = playlistUiState,
+    PlaylistScreenContent(playlistUiState = playlistUiState,
         playerUiState = playerUiState,
         onTapFavorite = {
-            Log.d("PlaylistScreen", "Tap favorite $it")
             playlistViewModel.toggleFavorite(it)
+            Log.d("PlaylistScreen", "Tap favorite $it")
         },
         onTapSong = {
             playerViewModel.load(it, playlistUiState.album)
             playerViewModel.play()
-        }
-    )
+            Log.d("PlaylistScreen", "Tap song ${it.name}")
+        })
 }
+
 
 @Composable
 private fun PlaylistScreenContent(
@@ -61,15 +79,20 @@ private fun PlaylistScreenContent(
     onTapSong: (Song) -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .padding(16.dp),
+        modifier = Modifier.padding(16.dp)
     ) {
+
+
         Cover(
             album = playlistUiState.album,
             isFavorite = playlistUiState.isFavorite,
-            onTapFavorite = onTapFavorite
+            isPlaying = playerUiState.isPlaying,
+            onTapFavorite = onTapFavorite,
         )
+
+
         PlaylistHeader(album = playlistUiState.album)
+
 
         PlaylistContent(
             playlist = playlistUiState.playlist,
@@ -79,56 +102,41 @@ private fun PlaylistScreenContent(
     }
 }
 
-@Composable
-private fun PlaylistHeader(album: Album) {
-    Column {
-        Text(
-            text = album.name,
-            style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
-            color = Color.White,
-            modifier = Modifier.padding(top = 16.dp)
-        )
-        Text(
-            text = stringResource(id = R.string.album_info, album.artists, album.year),
-            style = MaterialTheme.typography.body2,
-            color = Color.LightGray,
-        )
-    }
-}
 
 @Composable
 private fun PlaylistContent(
     playlist: List<Song>,
-    currentSong: Song?,
+    currentSong: Song? = null,
     onTapSong: (Song) -> Unit
 ) {
     val state = rememberLazyListState()
     LazyColumn(state = state) {
         items(playlist) { song ->
             Song(
-                song,
-                currentSong == song,
-                onTapSong
+                song = song,
+                isPlaying = song == currentSong,
+                onTapSong = onTapSong
             )
-
         }
+
 
         item {
             Spacer(modifier = Modifier.height(40.dp))
         }
     }
+
+
 }
 
+
 @Composable
-private fun Song(
-    song: Song,
-    isPlaying: Boolean,
-    onTapSong: (Song) -> Unit
-) {
+private fun Song(song: Song, isPlaying: Boolean, onTapSong: (Song) -> Unit) {
     Row(
         modifier = Modifier
             .padding(vertical = 8.dp)
-            .clickable { onTapSong(song) },
+            .clickable {
+                onTapSong(song)
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(modifier = Modifier.weight(1.0f)) {
@@ -139,33 +147,73 @@ private fun Song(
                     Color.Green
                 } else {
                     Color.White
-                }
+                },
             )
+
+
             Text(
                 text = song.lyric,
                 style = MaterialTheme.typography.caption,
-                color = Color.Gray
+                color = Color.Gray,
             )
         }
-
         Text(
-            modifier = Modifier.padding(start = 8.dp),
             text = song.length,
-            style = MaterialTheme.typography.caption,
-            color = Color.LightGray
+            modifier = Modifier.padding(start = 8.dp),
+            style = MaterialTheme.typography.body2,
+            color = Color.LightGray,
         )
     }
 }
+
+
+@Composable
+private fun PlaylistHeader(album: Album) {
+    Column {
+        Text(
+            text = album.name,
+            style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
+            modifier = Modifier.padding(top = 16.dp),
+            color = Color.White
+        )
+
+
+        Text(
+            text = stringResource(id = R.string.album_info, album.artists, album.year),
+            style = MaterialTheme.typography.body2,
+            color = Color.LightGray,
+        )
+    }
+
+
+}
+
 
 @Composable
 private fun Cover(
     album: Album,
     isFavorite: Boolean,
-    onTapFavorite: (Boolean) -> Unit,
+    isPlaying: Boolean,
+    onTapFavorite: (Boolean) -> Unit
 ) {
-    Column(
-        modifier = Modifier.fillMaxWidth()
-    ) {
+    var rotation by remember { mutableStateOf(0f) }
+
+    val rotationAnimation = rememberInfiniteTransition()
+    val rotationValue by rotationAnimation.animateFloat(
+        initialValue = 0f,
+        targetValue = -360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 5000, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        )
+    )
+
+    if (isPlaying) {
+        rotation = rotationValue
+    }
+
+
+    Column(modifier = Modifier.fillMaxWidth()) {
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -173,7 +221,9 @@ private fun Cover(
                 modifier = Modifier
                     .size(28.dp)
                     .align(Alignment.TopEnd)
-                    .clickable { onTapFavorite(!isFavorite) },
+                    .clickable {
+                        onTapFavorite(!isFavorite)
+                    },
                 painter = painterResource(
                     id = if (isFavorite) {
                         R.drawable.ic_favorite_24
@@ -189,6 +239,7 @@ private fun Cover(
                 contentDescription = ""
             )
 
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
@@ -203,12 +254,16 @@ private fun Cover(
                     contentDescription = null
                 )
 
+
                 AsyncImage(
                     model = album.cover,
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
                         .aspectRatio(1.0f)
+                        .graphicsLayer(
+                            rotationZ = rotation
+                        )
                         .align(Alignment.Center)
                         .clip(CircleShape),
                     contentScale = ContentScale.FillBounds
@@ -216,11 +271,16 @@ private fun Cover(
             }
 
         }
+
+
         Text(
             text = album.description,
             modifier = Modifier.padding(top = 4.dp),
             style = MaterialTheme.typography.caption,
             color = Color.Gray,
         )
+
+
     }
+
 }
